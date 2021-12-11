@@ -8,14 +8,14 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.stream.Collectors;
 
-public class Day3 {
+public class Day03 {
 
 	public static void main(String[] args) throws IOException {
 		List<String> lines = Files
 				.lines(Paths
 						.get("C:\\Users\\00010550\\Documents\\AoC\\workspace\\aoc2021\\src\\main\\resources\\day3\\input.txt"))
 				.collect(Collectors.toList());
-//		extracted(lines);
+		teil1(lines);
 		teil2(lines);
 
 	}
@@ -34,12 +34,9 @@ public class Day3 {
 	}
 	
 	public static List<String> filterByPosition(int position, List<String> lines, boolean least) {
-		
-		System.out.println("Bit " + position);
 		int countingOnes = 0;
 		int countingZeroes = 0;
 		for (String line : lines) {
-			System.out.println(line);
 			if (line.charAt(position) == '1') {
 				countingOnes += 1;
 			}
@@ -47,7 +44,6 @@ public class Day3 {
 				countingZeroes += 1;
 			}
 		}
-
 		char leadingChar;
 		if (countingOnes < countingZeroes) {
 			leadingChar = '0';
@@ -59,16 +55,12 @@ public class Day3 {
 			return lines.stream().filter(line -> line.charAt(position) != leadingChar).collect(Collectors.toList());
 		}
 		return lines.stream().filter(line -> line.charAt(position) == leadingChar).collect(Collectors.toList());
-		
 	}
 	
 	
-	private static void extracted(List<String> lines) {
+	private static void teil1(List<String> lines) {
 		String deltaString = "";
 		String epsilonString = "";
-		double delta = 0;
-		double epsilon = 0;
-//		double faktor = 1;
 		int countingOnes;
 		int countingZeroes;
 		int maxLength = 1337;
@@ -78,9 +70,7 @@ public class Day3 {
 			countingZeroes = 0;
 			for (String line : lines) {
 				maxLength = line.length();
-				System.out.println(line);
 				if (line.charAt(i) == '1') {
-					System.out.println("1 gefunden");
 					countingOnes += 1;
 				}
 				else {
